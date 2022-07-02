@@ -26,6 +26,7 @@ specifiers:
   reflect-metadata: ^0.1.13
   source-map-support: ^0.5.21
   typescript: ~4.6
+  unpoly: ^2.6.1
   youch: ^3.2.0
   youch-terminal: ^2.1.4
 
@@ -57,6 +58,7 @@ devDependencies:
   pino-pretty: 8.1.0
   prettier: 2.7.1
   typescript: 4.6.4
+  unpoly: 2.6.1
   youch: 3.2.0
   youch-terminal: 2.1.4
 
@@ -8314,6 +8316,10 @@ packages:
   /unpipe/1.0.0:
     resolution: {integrity: sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=}
     engines: {node: '>= 0.8'}
+
+  /unpoly/2.6.1:
+    resolution: {integrity: sha512-/n4vkyILGcZKbzDlWc9xX44kwuVJb4BfbxqgtANTzwjgWKVsq2cXsKI394GeVlu77wrDch4yPgH43aD4yKaYbw==}
+    dev: true
 
   /unset-value/1.0.0:
     resolution: {integrity: sha512-PcA2tsuGSF9cnySLHTLSh2qrQiJ70mn+r+Glzxv2TWZblxsxCC52BDlZoPCsz7STd9pN7EZetkWZBAvk4cgZdQ==}
