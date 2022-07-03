@@ -1,4 +1,5 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+import Role from '../../app/Enums/Roles'
 
 export default class UsersSchema extends BaseSchema {
   protected tableName = 'users'
@@ -8,6 +9,7 @@ export default class UsersSchema extends BaseSchema {
 
     this.schema.createTable(this.tableName, (table) => {
       table.uuid('id').primary().defaultTo(this.db.rawQuery('uuid_generate_v4()').knexQuery)
+      table.integer('role_id').unsigned().notNullable().defaultTo(Role.USER)
       table.string('username', 80).notNullable().unique()
       table.string('email', 255).notNullable().unique()
       table.string('password', 180).notNullable()

@@ -1,20 +1,32 @@
 @layout('layouts/app')
 
 @section('content')
-    @if(flashMessages.has('auth.errors'))
-    <p>Aucun utilisateur n'a été trouvé avec ces identifiants.</p>
+  @if(flashMessages.has('auth.errors'))
+    <p>
+      Aucun utilisateur n'a été trouvé avec ces identifiants.
+    </p>
+  @end
+
+  <form
+    action="{{ route('AuthController.login') }}"
+    method="POST"
+    up-submit
+    up-target="[page-body]"
+  >
+    {{ csrfField() }}
+
+    @form.group({ name: 'username'})
+        @!form.label({title: 'Identifiant'})
+        @!form.input({ type: 'text'})
     @end
-    
-    <form action="{{ route('AuthController.login') }}" method="POST" up-submit>
-        {{ csrfField() }}
-        <div class="form-group">
-            <label>Identifiant</label>
-            <input type="text" name="username">
-        </div>
-        <div class="form-group">
-            <label>Mot de passe</label>
-            <input type="password" name="password">
-        </div>
-        <button type="submit">Se connecter</button>
-    </form>
+
+    @form.group({ name: 'password' })
+        @!form.label({ title: 'Mot de passe' })
+        @!form.input({ type: 'password' })
+    @end
+
+    @elements.button({ type: 'submit' })
+      Connexion
+    @end
+  </form>
 @end
