@@ -7,26 +7,29 @@
     </p>
   @end
 
+<div class="container">
   <form
     action="{{ route('AuthController.login') }}"
     method="POST"
     up-submit
     up-target="[page-body]"
+    class="box"
   >
     {{ csrfField() }}
 
     @form.group({ name: 'username'})
-        @!form.label({title: 'Identifiant'})
-        @!form.input({ type: 'text'})
+        {{--  @!form.label({title: 'Identifiant'})  --}}
+        @!form.input({ type: 'text', placeholder: 'Identifiant'})
     @end
 
     @form.group({ name: 'password' })
-        @!form.label({ title: 'Mot de passe' })
-        @!form.input({ type: 'password' })
+        {{--  @!form.label({ title: 'Mot de passe'})  --}}
+        @!form.input({ type: 'password', placeholder: 'Mot de passe' })
     @end
 
-    @elements.button({ type: 'submit' })
+    @elements.button({ type: 'submit', class: 'btn1' })
       Connexion
     @end
   </form>
+</div>
 @end

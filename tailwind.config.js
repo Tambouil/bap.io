@@ -4,7 +4,11 @@ module.exports = {
     './resources/**/*.{edge,js,ts,vue,jsx,tsx}', // 👈
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        login: '#1d243d',
+      },
+    },
   },
   plugins: [],
 }
