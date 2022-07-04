@@ -10,7 +10,7 @@ export default class AuthController {
     const { username, password } = request.only(['username', 'password'])
 
     await auth.attempt(username, password)
-    return response.redirect('/')
+    return response.redirect('/home')
   }
   public showRegisterForm({ view }: HttpContextContract) {
     return view.render('auth/register')

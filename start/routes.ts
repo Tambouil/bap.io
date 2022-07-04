@@ -20,7 +20,8 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.on('/').render('pages/home')
+Route.on('/').render('auth/login')
+Route.on('/home').render('pages/home')
 
 Route.get('login', 'AuthController.showLoginForm')
 Route.post('login', 'AuthController.login')

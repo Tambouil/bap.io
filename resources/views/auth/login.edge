@@ -1,35 +1,87 @@
-@layout('layouts/app')
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boîte à plans | Application de transfert de fichiers</title>
 
-@section('content')
-  @if(flashMessages.has('auth.errors'))
-    <p>
-      Aucun utilisateur n'a été trouvé avec ces identifiants.
-    </p>
-  @end
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+</head>
+<body page-body>
+  <main main-layout class="bg-login h-screen">
+    <section class="flex flex-col md:flex-row p-8 md:h-screen items-center bg-slate-100">
+      <div class="
+          bg-white
+          w-full
+          md:max-w-md
+          lg:max-w-lg
+          mx-auto
+          rounded-3xl
+          pt-0
+          flex
+          flex-col
+          items-center
+          justify-center
+        ">
+        <div class="w-full h-32 rounded-t-3xl" style="background: linear-gradient(125deg, #ECFCFF 0%, #ECFCFF 40%, #B2FCFF calc(40% + 1px), #B2FCFF 60%, #5EDFFF calc(60% + 1px), #5EDFFF 72%, #3E64FF calc(72% + 1px), #3E64FF 100%);">
+        </div>
+          @if(flashMessages.has('auth.errors'))
+            <div class="p-4">
+              <div class="alert alert-error shadow-lg p-8">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <span>Aucun utilisateur n'a été trouvé avec ces identifiants</span>
+                </div>
+              </div>
+            </div>
+          @end
+        <div class="w-full h-100 p-12">
+          <h1 class="
+              text-3xl
+              md:text-3xl
+              font-bold
+              leading-tight
+              text-slate-700
+              text-center
+            ">
+            Bienvenue sur la BAP
+          </h1>
 
-<div class="container">
-  <form
-    action="{{ route('AuthController.login') }}"
-    method="POST"
-    up-submit
-    up-target="[page-body]"
-    class="box"
-  >
-    {{ csrfField() }}
+          <form class="mt-6" action="{{ route('AuthController.login') }}" method="POST" up-submit up-target="[page-body]">
+            {{ csrfField() }}
 
-    @form.group({ name: 'username'})
-        {{--  @!form.label({title: 'Identifiant'})  --}}
-        @!form.input({ type: 'text', placeholder: 'Identifiant'})
-    @end
+            @form.group({ name: 'username'})
+            @!form.label({title: 'Identifiant', class: 'block text-slate-500'})
+            @!form.input({ type: 'text', placeholder: 'Identifiant', required: true, class: 'w-full px-4 py-3 bg-slate-100 rounded-lg mt-2 focus:border-blue-500 focus:outline-blue-600 focus:bg-white'})
+            @end
 
-    @form.group({ name: 'password' })
-        {{--  @!form.label({ title: 'Mot de passe'})  --}}
-        @!form.input({ type: 'password', placeholder: 'Mot de passe' })
-    @end
+            @form.group({ name: 'password' })
+              @!form.label({ title: 'Mot de passe', class: 'block text-slate-500'})
+              @!form.input({ type: 'password', placeholder: 'Mot de passe', required: true, class: 'w-full px-4 py-3 bg-slate-100 rounded-lg mt-2 focus:border-blue-500 focus:outline-blue-600 focus:bg-white' })
+            @end
 
-    @elements.button({ type: 'submit', class: 'btn1' })
-      Connexion
-    @end
-  </form>
-</div>
-@end
+            <div class="text-right mt-2">
+              <a href="#" class="
+                  text-sm text-blue-500
+                  hover:text-blue-700
+                  focus:text-blue-700
+                ">Mot de passe oublié ?</a>
+            </div>
+
+            @elements.button({ type: 'submit', class: 'w-full block bg-blue-700 hover:bg-blue-600 focus:bg-blue-600 text-white font-semibold rounded-lg px-4 py-3 mt-6' })
+              Connexion
+            @end
+          </form>
+
+          <hr class="my-6 border-slate-200 w-full" />
+
+          <p class="mt-8 text-slate-500">
+            Vous ne pouvez pas vous inscrire vous même. Si vous avez besoin d'un compte merci de contacter l'administrateur.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
