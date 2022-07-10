@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Boîte à plans | Application de transfert de fichiers</title>
+  <script src="//unpkg.com/alpinejs" defer></script>
 
   @entryPointStyles('app')
   @entryPointScripts('app')
@@ -51,15 +52,26 @@
           <form class="mt-6" action="{{ route('AuthController.login') }}" method="POST" up-submit up-target="[page-body]">
             {{ csrfField() }}
 
-            @form.group({ name: 'username'})
-            @!form.label({title: 'Identifiant', class: 'block text-slate-500'})
-            @!form.input({ type: 'text', placeholder: 'Identifiant', required: true, class: 'w-full px-4 py-3 bg-slate-100 rounded-lg mt-2 focus:border-blue-500 focus:outline-blue-600 focus:bg-white'})
-            @end
+              @!form.input({
+              label: 'Identifiant',
+              type: 'text',
+              name: 'username',
+              class: 'bg-red-900 w-full px-4 py-3 bg-slate-100 rounded-lg mt-2 focus:border-blue-500 focus:outline-blue-600 focus:bg-white',
+              placeholder: 'Entrer votre identifiant',
+              value: flashMessages.get('username') ?? '',
+              autocomplete: 'email',
+              required: true,
+            })
 
-            @form.group({ name: 'password' })
-              @!form.label({ title: 'Mot de passe', class: 'block text-slate-500'})
-              @!form.input({ type: 'password', placeholder: 'Mot de passe', required: true, class: 'w-full px-4 py-3 bg-slate-100 rounded-lg mt-2 focus:border-blue-500 focus:outline-blue-600 focus:bg-white' })
-            @end
+            @!form.input({
+              label: 'Mot de passe',
+              type: 'password',
+              name: 'password',
+              placeholder: 'Entrer votre mot de passe',
+              value: '',
+              autocomplete: 'new-password',
+              required: true
+            })
 
             <div class="text-right mt-2">
               <a href="#" class="
