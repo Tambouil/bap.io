@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BAP | File transfer web app</title>
-  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
 
   @entryPointStyles('app')
   @entryPointScripts('app')
@@ -17,7 +16,7 @@
       <!-- Navbar -->
       @include('partials/header')
       <!-- Page content here -->
-      <main main-layout class="min-h-screen">
+      <main main-layout>
         @!section('content')
       </main>
     </div> 
@@ -27,11 +26,11 @@
       <div class="flex justify-end">
       </div>
         <!-- Sidebar content here -->
-        <img src="assets/img/drawer.svg" alt="" class="my-4">
+        <img src="images/sidebar.svg" alt="" class="my-4">
         @include('partials/sidebar')
       </ul>
     </div>
   </div>
-  <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+  <script src="//unpkg.com/alpinejs" defer></script>
 </body>
 </html>
