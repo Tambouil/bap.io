@@ -1,0 +1,40 @@
+@layout('layouts/app')
+
+@section('content')    
+<h1 class="text-center my-6">Enregistrer un nouvel administrateur</h1>
+    <form action="{{ route('AuthController.registerAdmin') }}" method="POST" up-submit>
+        {{ csrfField() }}
+
+<div class="w-8/12 mx-auto p-10 border rounded-lg">
+        <div class="mb-6">
+            @form.group({ name: 'username'})
+                @!form.label({title: 'Identifiant', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'})
+                @!form.input({ type: 'text', placeholder: 'Identifiant', required: true, class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'})
+            @end
+        </div>
+        <div class="mb-6">
+            @form.group({ name: 'email'})
+                @!form.label({title: 'Email', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'})
+                @!form.input({ type: 'email', placeholder: 'Identifiant', required: true, class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'})
+            @end
+        </div>
+        <div class="mb-6">
+            @form.group({ name: 'password'})
+                @!form.label({title: 'Mot de passe', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'})
+                @!form.input({ type: 'password', placeholder: 'Identifiant', required: true, class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'})
+            @end
+        </div>
+        <div class="mb-6">
+            @form.group({ name: 'password_confirmation'})
+                @!form.label({title: 'Confirmation du mot de passe', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'})
+                @!form.input({ type: 'password', placeholder: 'Identifiant', required: true, class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'})
+            @end
+        </div>
+        <div class="mb-6">
+            @elements.button({ type: 'submit', class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' })
+                S'inscrire
+            @end
+        </div>
+    </form>
+</div>
+@end

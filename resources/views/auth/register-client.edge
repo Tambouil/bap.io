@@ -1,0 +1,91 @@
+@layout('layouts/app')
+
+@section('content')    
+<h1 class="text-center my-6">Enregistrer un nouveau client</h1>
+    <form action="{{ route('AuthController.registerClient') }}" method="POST" up-submit>
+        {{ csrfField() }}
+
+        @if(flashMessages.has('success'))
+          <div class="alert alert-warning shadow-lg">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              <span>{{ flashMessages.get('success') }}</span>
+            </div>
+        </div>
+        @endif
+        {{ inspect(flashMessages.all()) }}
+        @if(flashMessages.has('errors'))
+        <div class="alert alert-error shadow-lg">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>{{  flashMessages.get('errors.form') }}</span>
+          </div>
+        </div>
+        @endif
+
+        <div class="w-8/12 mx-auto p-10 border rounded-lg">
+          <div class="mb-6">
+            @!form.input({
+            label: 'Username',
+            name: 'username',
+            placeholder: 'Enter username',
+            value: flashMessages.get('username') ?? '',
+            errors: flashMessages.get('errors.username'),
+            autocomplete: 'username',
+            hint: 'Minimum of 3 characters containing only letters, numbers, _, or -',
+            min: 3,
+            required: true,
+            })
+          </div>
+          <div class="mb-6">
+            @!form.input({
+            label: 'Email',
+            type: 'email',
+            name: 'email',
+            placeholder: 'Enter email',
+            value: flashMessages.get('email') ?? '',
+            errors: flashMessages.get('errors.email'),
+            autocomplete: 'email',
+            required: true,
+            })
+          </div>
+          <div class="mb-6">
+            @!form.input({
+            label: 'Password',
+            type: 'password',
+            name: 'password',
+            placeholder: 'Enter password',
+            value: '',
+            errors: flashMessages.get('errors.password'),
+            autocomplete: 'new-password',
+            required: true,
+            min: 8,
+            })
+        </div>
+          <div class="mb-6">
+            @!form.input({
+            label: 'Confirmation du mot de passe',
+            type: 'password',
+            name: 'password_confirmation',
+            placeholder: 'Confirm password',
+            value: '',
+            errors: flashMessages.get('errors.password'),
+            autocomplete: 'new-password',
+            required: true,
+            min: 8,
+            })
+          </div>
+
+        @button({
+          type: 'submit',
+          className: 'w-full flex justify-center mt-2'
+        })
+          Register
+        @endbutton
+    </form>
+</div>
+@end
+
+
+
+
