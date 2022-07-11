@@ -10,7 +10,7 @@ export default class extends BaseSeeder {
       username: 'admin',
       email: 'v.berceaux@gmail.com',
       password: 'admin',
-      role_id: Role.ADMIN,
+      roleId: Role.ADMIN,
     })
 
     await UserFactory.createMany(10)

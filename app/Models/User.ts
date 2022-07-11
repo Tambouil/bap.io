@@ -4,6 +4,9 @@ import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
 import Role from '../Enums/Roles'
 
 export default class User extends BaseModel {
+  roles() {
+    throw new Error('Method not implemented.')
+  }
   @column({ isPrimary: true })
   public id: string
 
@@ -17,7 +20,7 @@ export default class User extends BaseModel {
   public password: string
 
   @column()
-  public role_id: Role
+  public roleId: Role
 
   @column()
   public rememberMeToken?: string

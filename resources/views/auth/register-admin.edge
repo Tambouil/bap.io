@@ -2,39 +2,101 @@
 
 @section('content')    
 <h1 class="text-center my-6">Enregistrer un nouvel administrateur</h1>
-    <form action="{{ route('AuthController.registerAdmin') }}" method="POST" up-submit>
+<form action="{{ route('RegisterController.registerAdmin') }}" method="POST" up-submit>
         {{ csrfField() }}
 
-<div class="w-8/12 mx-auto p-10 border rounded-lg">
-        <div class="mb-6">
-            @form.group({ name: 'username'})
-                @!form.label({title: 'Identifiant', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'})
-                @!form.input({ type: 'text', placeholder: 'Identifiant', required: true, class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'})
-            @end
+        @if(flashMessages.has('success'))
+        <div class="w-4/6 mx-auto my-6">
+          <div class="alert alert-success shadow-lg">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              <span>{{ flashMessages.get('success') }}</span>
+            </div>
+          </div>
         </div>
-        <div class="mb-6">
-            @form.group({ name: 'email'})
-                @!form.label({title: 'Email', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'})
-                @!form.input({ type: 'email', placeholder: 'Identifiant', required: true, class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'})
-            @end
+        @endif
+
+        @if(flashMessages.has('errors'))
+        <div class="w-4/6 mx-auto my-6">
+          <div class="alert alert-error shadow-lg">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <span>Erreur ! Merci de remplir correctement les champs</span>
+            </div>
+          </div>
         </div>
-        <div class="mb-6">
-            @form.group({ name: 'password'})
-                @!form.label({title: 'Mot de passe', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'})
-                @!form.input({ type: 'password', placeholder: 'Identifiant', required: true, class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'})
-            @end
-        </div>
-        <div class="mb-6">
-            @form.group({ name: 'password_confirmation'})
-                @!form.label({title: 'Confirmation du mot de passe', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'})
-                @!form.input({ type: 'password', placeholder: 'Identifiant', required: true, class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'})
-            @end
-        </div>
-        <div class="mb-6">
-            @elements.button({ type: 'submit', class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' })
-                S'inscrire
-            @end
-        </div>
-    </form>
-</div>
+        @endif
+
+  <div class="w-8/12 mx-auto p-10 border rounded-lg">
+    {{--  <div class="mb-6">
+        @!form.input({
+          label: 'Full Name',
+          name: 'name',
+          placeholder: 'Enter fullname',
+          value: flashMessages.get('name') ?? '',
+          errors: flashMessages.get('errors.name'),
+          autocomplete: 'name',
+          hint: 'Minimum of 3 characters',
+          min: 3,
+          required: true,
+        })
+    </div>  --}}
+    <div class="mb-6">
+        @!form.input({
+          label: 'Username',
+          name: 'username',
+          placeholder: 'Enter username',
+          value: flashMessages.get('username') ?? '',
+          errors: flashMessages.get('errors.username'),
+          autocomplete: 'username',
+          hint: 'Minimum of 3 characters containing only letters, numbers, _, or -',
+          min: 3,
+          required: true,
+        })
+    </div>
+    <div class="mb-6">
+        @!form.input({
+          label: 'Email',
+          type: 'email',
+          name: 'email',
+          placeholder: 'Enter email',
+          value: flashMessages.get('email') ?? '',
+          errors: flashMessages.get('errors.email'),
+          autocomplete: 'email',
+          required: true,
+        })
+    </div>
+    <div class="mb-6">
+        @!form.input({
+          label: 'Password',
+          type: 'password',
+          name: 'password',
+          placeholder: 'Enter password',
+          value: '',
+          errors: flashMessages.get('errors.password'),
+          autocomplete: 'new-password',
+          required: true,
+          min: 8
+        })
+    </div>
+              <div class="mb-6">
+            @!form.input({
+            label: 'Confirmation du mot de passe',
+            type: 'password',
+            name: 'password_confirmation',
+            placeholder: 'Confirm password',
+            value: '',
+            errors: flashMessages.get('errors.password'),
+            autocomplete: 'new-password',
+            required: true,
+            min: 8,
+            })
+          </div>
+    <div class="mb-6">
+        @elements.button({ type: 'submit', class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' })
+            S'inscrire
+        @end
+    </div>
+  </div>
+</form>
 @end
