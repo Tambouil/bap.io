@@ -3,9 +3,10 @@ import Application from '@ioc:Adonis/Core/Application'
 
 export default class UploadController {
   public async upload({ request, response, session }: HttpContextContract) {
-    const file = request.file('bap')
+    const file = request.file('file_upload')
     if (!file) {
-      return session.flash('error', 'No file uploaded')
+      session.flash('error', 'Veuillez sélectionner un fichier')
+      return response.redirect().back()
     }
 
     await file.move(Application.tmpPath('uploads'))
