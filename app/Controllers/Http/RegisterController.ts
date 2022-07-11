@@ -11,7 +11,7 @@ export default class RegisterController {
 
     await User.create(payload)
     session.flash('success', 'Client created successfully')
-    return response.redirect('/register-client')
+    return response.redirect().back()
   }
 
   public showAdminForm({ view }: HttpContextContract) {
@@ -24,6 +24,6 @@ export default class RegisterController {
     await User.query().where('username', payload.username).update({ roleId: 2 })
 
     session.flash('success', 'Admin created successfully')
-    return response.redirect('/register-admin')
+    return response.redirect().back()
   }
 }

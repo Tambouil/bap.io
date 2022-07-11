@@ -28,7 +28,10 @@ Route.get('/', 'AuthController.showLoginForm')
 Route.post('/', 'AuthController.login')
 Route.delete('/logout', 'AuthController.logout')
 
+//User
 Route.get('/register-client', 'RegisterController.showClientForm')
 Route.post('/register-client', 'RegisterController.registerClient')
 Route.get('/register-admin', 'RegisterController.showAdminForm')
 Route.post('register-admi', 'RegisterController.registerAdmin')
+
+Route.post('/upload', 'UploadController.upload')
